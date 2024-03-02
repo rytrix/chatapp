@@ -16,7 +16,9 @@ impl Server {
     pub fn run(&self) {
         for stream in self.socket.incoming() {
             let stream = stream.unwrap();
-            Self::handle_client(stream).unwrap();
+            std::thread::spawn(|| {
+                Self::handle_client(stream).unwrap();
+            });
         }
     }
 

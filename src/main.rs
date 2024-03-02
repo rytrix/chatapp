@@ -1,6 +1,9 @@
 mod client;
 mod server;
 
+use server::Server;
+use client::Client;
+
 fn usage(args: &Vec<String>) {
     eprintln!("usage: {} <server, client> <ip>", args[0])
 }
@@ -14,11 +17,11 @@ fn main() {
 
     match args[1].as_ref() {
         "server" => {
-            let s = server::Server::new(args[2].as_ref()).unwrap();
+            let s = Server::new(args[2].as_ref()).unwrap();
             s.run();
         }
         "client" => {
-            let mut c = client::Client::new(args[2].as_ref()).unwrap();
+            let mut c = Client::new(args[2].as_ref()).unwrap();
             c.run().unwrap();
         }
         _ => {
