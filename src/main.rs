@@ -17,8 +17,8 @@ fn main() {
 
     match args[1].as_ref() {
         "server" => {
-            let s = Server::new(args[2].as_ref()).unwrap();
-            s.run();
+            let mut s = Server::new(args[2].as_ref()).unwrap();
+            s.run().unwrap();
         }
         "client" => {
             let mut c = Client::new(args[2].as_ref()).unwrap();
